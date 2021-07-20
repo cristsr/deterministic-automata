@@ -8,6 +8,9 @@ export class StateBuilder {
 
   constructor(private config: Config) {}
 
+  /**
+   * Build states from csv configuration and return initial state
+   */
   async build(): Promise<State | undefined> {
     await this.prepareData();
     await this.makeStates();
