@@ -9,23 +9,10 @@ export class StateBuilder {
   constructor(private config: Config) {}
 
   async build(): Promise<State | undefined> {
-    this.data = await this.prepareData();
-
-    console.log(this.data);
-
-    this.states = await this.makeStates();
-
+    await this.prepareData();
+    await this.makeStates();
     this.buildEdges();
-
-    this.states.forEach((state) =>
-      console.log({
-        id: state.id,
-        edges: state.edges.length,
-        isInitial: state.isInitial,
-        isFinal: state.isFinal,
-      }),
-    );
-
+    console.log(this.data);
     return this.states.find((state) => state.isInitial);
   }
 
@@ -33,27 +20,29 @@ export class StateBuilder {
    * Read csv and parse numbers to boolean type
    * @private
    */
-  private async prepareData() {
+  private async prepareData(): Promise<void> {
     const csvRows = await readCsvFile(this.config.csv).catch((error: Error) => {
       console.error(error.message);
       throw error;
     });
 
-    return csvRows.map(([state, symbol, nextState, isInitial, isFinal]) => [
-      state,
-      symbol,
-      nextState,
-      isInitial === '1',
-      isFinal === '1',
-    ]);
+    this.data = csvRows.map(
+      ([state, symbol, nextState, isInitial, isFinal]) => [
+        state,
+        symbol,
+        nextState,
+        isInitial === '1',
+        isFinal === '1',
+      ],
+    );
   }
 
   /**
    * Make states from data configuration
    * @private
    */
-  private makeStates(): State[] {
-    return this.data.reduce((store: State[], row: any[]) => {
+  private makeStates(): void {
+    this.states = this.data.reduce((store: State[], row: any[]) => {
       const existState = store.find((v) => v.id === row[0]);
 
       if (existState) return store;

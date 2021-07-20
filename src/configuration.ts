@@ -7,5 +7,5 @@ export const CONFIG: Config = {
     path: 'assets/keys-states.csv',
     delimiter: ';',
   },
-  test: [...'KKEEYYS'],
+  test: 'KKEEssYYSSSSS',
 };
