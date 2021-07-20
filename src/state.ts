@@ -13,9 +13,11 @@ export class State {
   ) {}
 
   /**
-   * Teniendo en cuenta que "this" es es el estado actual
-   * Entonces la funcion de transicion recibe como entrada el simbolo
-   * y retorna el siguiente estado
+   *
+   * Given that "this" is the curren state
+   * then the transition function take as input, the symbol adn return the
+   * nex state.
+   * if next state not found then throw an exception.
    * @param symbol
    */
   transition(symbol: string) {
@@ -28,6 +30,11 @@ export class State {
     return edge.state;
   }
 
+  /**
+   * After state instantiate, addEdge is called and populate
+   * this.edges with states references
+   * @param edge
+   */
   addEdge(edge: Edge): State {
     this.edges.push(edge);
     return this;

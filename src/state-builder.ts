@@ -12,7 +12,6 @@ export class StateBuilder {
     await this.prepareData();
     await this.makeStates();
     this.buildEdges();
-    console.log(this.data);
     return this.states.find((state) => state.isInitial);
   }
 
@@ -35,6 +34,8 @@ export class StateBuilder {
         isFinal === '1',
       ],
     );
+
+    console.log(this.data);
   }
 
   /**
