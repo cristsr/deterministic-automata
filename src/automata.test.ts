@@ -1,22 +1,26 @@
-import { Automata } from './automata';
-import { State } from './state';
+import { App } from './app';
+import { CONFIG } from './configuration';
 
 describe('Automata', () => {
-  let initialState: State;
+  const app = new App();
 
-  beforeAll(() => {
-    return 'hello';
+  beforeAll(async () => {
+    await app.configure(CONFIG);
   });
 
-  it('kkeeyy', () => {
-    expect('kkeeyy').toBeTruthy();
+  it('Given KEYS result should be successfully', () => {
+    expect(app.run('KEYS')).toBeTruthy();
   });
 
-  it('kkeeyy2', () => {
-    expect('kkeeyy').toBeTruthy();
+  it('Given KKEEYYSS result should be successfully', () => {
+    expect(app.run('KKEEYYSS')).toBeTruthy();
   });
 
-  it('kkeeyyasda', () => {
-    expect('kkeeyy').toBeTruthy();
+  it('Given KKAAAYYS result should be successfully', () => {
+    try {
+      app.run('KKAAAYYS');
+    } catch (e) {
+      expect(e).toBeInstanceOf(Error);
+    }
   });
 });
