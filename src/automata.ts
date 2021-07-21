@@ -4,11 +4,11 @@ export class Automata {
   private initialState!: State;
   private input!: string[];
 
-  setInitialState(state: State) {
+  setInitialState(state: State): void {
     this.initialState = state;
   }
 
-  setInput(input: string[]) {
+  setInput(input: string[]): void {
     this.input = input;
   }
 
@@ -58,7 +58,7 @@ export class Automata {
    * @param loggedStates
    * @private
    */
-  private logStates(state: State, loggedStates: State[] = []): any {
+  private logStates(state: State, loggedStates: State[] = []): void {
     if (loggedStates.find((v) => v === state)) {
       return;
     }
@@ -77,7 +77,7 @@ export class Automata {
    * @param state
    * @private
    */
-  private printMessage(state: State) {
+  private printMessage(state: State): void {
     console.log();
     console.log('STATE ' + state.id);
 

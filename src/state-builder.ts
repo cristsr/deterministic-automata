@@ -7,7 +7,7 @@ export class StateBuilder {
   private states!: State[];
   private config!: Config;
 
-  setConfig(config: Config) {
+  setConfig(config: Config): void {
     this.config = config;
   }
 
@@ -50,7 +50,7 @@ export class StateBuilder {
    */
   private makeStates(): void {
     this.states = this.data.reduce((store: State[], row: any[]) => {
-      const existState = store.find((v) => v.id === row[0]);
+      const existState = store.find((v: State) => v.id === row[0]);
 
       if (existState) return store;
 
@@ -75,7 +75,7 @@ export class StateBuilder {
       }
 
       const nextState: State | undefined = this.states.find(
-        (v) => v.id === nextId,
+        (v: State) => v.id === nextId,
       );
 
       if (!nextState) {
@@ -94,7 +94,7 @@ export class StateBuilder {
    * @private
    */
   private getInitialState(): State {
-    const state = this.states.find((state) => state.isInitial);
+    const state = this.states.find((state: State) => state.isInitial);
 
     if (!state) {
       throw new Error('First state not found');

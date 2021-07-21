@@ -1,7 +1,7 @@
 import { App } from './app';
 import { CONFIG } from './configuration';
 
-async function main() {
+async function main(): Promise<void> {
   const app = new App();
   await app.configure(CONFIG);
 
