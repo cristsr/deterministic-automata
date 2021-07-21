@@ -14,9 +14,9 @@ export class State {
 
   /**
    *
-   * Given that "this" is the curren state
-   * then the transition function take as input, the symbol adn return the
-   * nex state.
+   * Given that "this" is the current state
+   * then the transition function take as input the symbol and return the
+   * next state.
    * if next state not found then throw an exception.
    * @param symbol
    */
