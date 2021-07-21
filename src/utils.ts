@@ -7,7 +7,5 @@ export const readCsvFile = async ({
   delimiter,
 }: any): Promise<string[][]> => {
   const fileContent = await fs.readFile(join(__dirname, path));
-  return parseCsv(fileContent, {
-    delimiter,
-  }).slice(1);
+  return parseCsv(fileContent, { delimiter }).slice(1);
 };

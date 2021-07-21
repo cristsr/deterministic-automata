@@ -16,7 +16,7 @@ export class StateBuilder {
    */
   async build(): Promise<State> {
     await this.prepareData();
-    await this.makeStates();
+    this.makeStates();
     this.buildEdges();
     return this.getInitialState();
   }
