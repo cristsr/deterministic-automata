@@ -1,6 +1,7 @@
 import { StateBuilder } from './state-builder';
 import { Config } from './configuration';
 import { Automata } from './automata';
+import { State } from './state';
 
 export class App {
   private stateBuilder = new StateBuilder();
@@ -8,7 +9,7 @@ export class App {
 
   async configure(config: Config) {
     this.stateBuilder.setConfig(config);
-    const initialState = await this.stateBuilder.build();
+    const initialState: State = await this.stateBuilder.build();
     this.automata.setInitialState(initialState);
   }
 
