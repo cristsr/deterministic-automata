@@ -8,7 +8,8 @@ export class App {
 
   async configure(config: Config) {
     this.stateBuilder.setConfig(config);
-    this.automata.setInitialState(await this.stateBuilder.build());
+    const initialState = await this.stateBuilder.build();
+    this.automata.setInitialState(initialState);
   }
 
   run(input: string) {
