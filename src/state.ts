@@ -21,7 +21,9 @@ export class State {
    * @param symbol
    */
   transition(symbol: string) {
-    const edge = this.edges.find((state) => state.symbol === symbol);
+    const edge: Edge | undefined = this.edges.find(
+      (state: Edge) => state.symbol === symbol,
+    );
 
     if (!edge) {
       throw new Error(`Next state not found for ${symbol} in state ${this.id}`);
