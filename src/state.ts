@@ -8,8 +8,8 @@ export class State {
 
   constructor(
     public readonly id: string,
-    public isInitial = false,
-    public isFinal = false,
+    public readonly isInitial = false,
+    public readonly isFinal = false,
   ) {}
 
   /**

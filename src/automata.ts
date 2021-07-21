@@ -1,15 +1,21 @@
 import { State } from './state';
 
 export class Automata {
-  constructor(
-    private readonly initialState: State,
-    private readonly input: string[],
-  ) {}
+  private initialState!: State;
+  private input!: string[];
+
+  setInitialState(state: State) {
+    this.initialState = state;
+  }
+
+  setInput(input: string[]) {
+    this.input = input;
+  }
 
   /**
    * Print all states with edges and initialize automata execution
    */
-  run() {
+  run(): boolean {
     this.logStates(this.initialState);
 
     console.log();
@@ -17,7 +23,7 @@ export class Automata {
     console.log('Initial State: ' + this.initialState.id);
     console.log();
 
-    this.runTransitions(this.initialState);
+    return this.runTransitions(this.initialState);
   }
 
   /**
@@ -26,7 +32,7 @@ export class Automata {
    * @param i
    * @private
    */
-  private runTransitions(state: State, i = 0) {
+  private runTransitions(state: State, i = 0): boolean {
     if (!this.input[i] && state.isFinal) {
       console.log('The given input is valid');
       return true;
@@ -43,7 +49,7 @@ export class Automata {
     console.log('Next state: ' + newState.id);
     console.log();
 
-    this.runTransitions(newState, i + 1);
+    return this.runTransitions(newState, i + 1);
   }
 
   /**

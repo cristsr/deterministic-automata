@@ -5,17 +5,20 @@ import { State } from './state';
 export class StateBuilder {
   private data!: any[][];
   private states!: State[];
+  private config!: Config;
 
-  constructor(private config: Config) {}
+  setConfig(config: Config) {
+    this.config = config;
+  }
 
   /**
    * Build states from csv configuration and return initial state
    */
-  async build(): Promise<State | undefined> {
+  async build(): Promise<State> {
     await this.prepareData();
     await this.makeStates();
     this.buildEdges();
-    return this.states.find((state) => state.isInitial);
+    return this.getInitialState();
   }
 
   /**
@@ -84,5 +87,19 @@ export class StateBuilder {
         state: nextState,
       });
     });
+  }
+
+  /**
+   * Return initial state
+   * @private
+   */
+  private getInitialState(): State {
+    const state = this.states.find((state) => state.isInitial);
+
+    if (!state) {
+      throw new Error('First state not found');
+    }
+
+    return state;
   }
 }

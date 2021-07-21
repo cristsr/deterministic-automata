@@ -1,5 +1,8 @@
 export type Config = {
-  [key: string]: any;
+  csv: {
+    path: string;
+    delimiter: string;
+  };
 };
 
 export const CONFIG: Config = {
@@ -7,5 +10,4 @@ export const CONFIG: Config = {
     path: 'assets/keys-states.csv',
     delimiter: ';',
   },
-  test: 'KKEEssYYSSSSS',
 };
